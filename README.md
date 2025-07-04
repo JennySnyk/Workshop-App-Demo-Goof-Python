@@ -46,13 +46,34 @@ The application will be available at `http://localhost:5001`.
 
 ## Vulnerability Details
 
-- **Command Injection**: `vulnerabilities/cmd_injection`
-- **SQL Injection**: `vulnerabilities/sqli`
-- **Hardcoded Secret**: `vulnerabilities/hardcoded_secret`
-- **Vulnerable Dependency**: `PyYAML==5.1` (High-Severity Deserialization Vulnerability)
-- **Path Traversal**: `vulnerabilities/path_traversal`
-- **Cross-Site Scripting (XSS)**: `vulnerabilities/xss`
-- **Insecure Deserialization**: `vulnerabilities/insecure_deserialization`
+Here are some of the vulnerabilities included in this application and how to trigger them:
+
+*   **Command Injection**
+    *   **Route**: `/vulnerabilities/cmd_injection`
+    *   **How to trigger**: In the input field, enter an IP address followed by a command, like `8.8.8.8; ls`. The output of the `ls` command will be displayed on the page.
+
+*   **SQL Injection**
+    *   **Route**: `/vulnerabilities/sqli`
+    *   **How to trigger**: In the "Username" field, enter the payload `' OR 1=1 --` and any password. You will be logged in as the `admin` user.
+
+*   **Path Traversal**
+    *   **Route**: `/vulnerabilities/path_traversal`
+    *   **How to trigger**: In the input field, enter `../../.gitignore`. The application will read and display the contents of the `.gitignore` file from the project's root directory.
+
+*   **Cross-Site Scripting (XSS)**
+    *   **Route**: `/vulnerabilities/xss`
+    *   **How to trigger**: In the comment box, enter the payload `<script>alert('XSS!')</script>`. Submitting the form will execute the script and cause an alert box to appear.
+
+*   **Insecure Deserialization**
+    *   **Route**: `/vulnerabilities/insecure_deserialization`
+    *   **How to trigger**: In the YAML data field, enter the payload `!!python/object/apply:os.popen ["whoami"]`. The output of the `whoami` command will be printed to the application's console logs, not the web page.
+
+*   **Hardcoded Secret**
+    *   **Route**: `/vulnerabilities/hardcoded_secret`
+    *   **How to trigger**: Simply navigate to the page. The hardcoded API key is displayed in plain text.
+
+*   **Vulnerable Dependency (SCA)**
+    *   The project uses `PyYAML==5.1`, which has a known high-severity vulnerability. This can be detected by running a Snyk Open Source scan.
 
 ## Disclaimer
 
