@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}To-Do List{% endblock %}
+{% block content %}
+  <h2>To-Do List</h2>
+  <form action="/todos/add" method="post" class="mb-4">
+    <div class="input-group">
+      <input type="text" class="form-control" name="content" placeholder="Add a new to-do item...">
+      <button class="btn btn-primary" type="submit">Add</button>
+    </div>
+  </form>
+  <ul class="list-group">
+    {% for item in items %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        {{ item[1] }}
+        <a href="/todos/delete/{{ item[0] }}" class="btn btn-danger btn-sm">Delete</a>
+      </li>
+    {% else %}
+      <li class="list-group-item">No to-do items yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

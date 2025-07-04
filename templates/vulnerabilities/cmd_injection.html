@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Command Injection{% endblock %}
+{% block content %}
+  <h2>Command Injection</h2>
+  <p>Enter a domain name to look up its IP address. The application uses the <code>nslookup</code> command to perform this action.</p>
+  <form method="post">
+    <div class="mb-3">
+      <label for="domain" class="form-label">Domain Name</label>
+      <input type="text" class="form-control" id="domain" name="domain" placeholder="example.com">
+    </div>
+    <button type="submit" class="btn btn-primary">Lookup</button>
+  </form>
+  {% if output %}
+    <h4 class="mt-4">Output:</h4>
+    <pre class="bg-light p-3"><code>{{ output }}</code></pre>
+  {% endif %}
+{% endblock %}
