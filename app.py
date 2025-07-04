@@ -6,6 +6,9 @@ import os
 from vulnerabilities.cmd_injection import cmd_injection_bp
 from vulnerabilities.sqli import sqli_bp
 from vulnerabilities.hardcoded_secret import hardcoded_secret_bp
+from vulnerabilities.path_traversal import path_traversal_bp
+from vulnerabilities.xss import xss_bp
+from vulnerabilities.insecure_deserialization import insecure_deserialization_bp
 
 app = Flask(__name__)
 
@@ -13,6 +16,9 @@ app = Flask(__name__)
 app.register_blueprint(cmd_injection_bp)
 app.register_blueprint(sqli_bp)
 app.register_blueprint(hardcoded_secret_bp)
+app.register_blueprint(path_traversal_bp)
+app.register_blueprint(xss_bp)
+app.register_blueprint(insecure_deserialization_bp)
 
 # --- Database Setup ---
 def init_db():

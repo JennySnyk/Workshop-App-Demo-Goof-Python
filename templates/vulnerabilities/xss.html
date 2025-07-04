@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Cross-Site Scripting (XSS){% endblock %}
+{% block content %}
+  <h2>Cross-Site Scripting (XSS)</h2>
+  <p>Leave a comment in the guestbook below. The application does not properly sanitize user input, allowing for malicious scripts to be injected.</p>
+  <p>Try submitting a comment like: <code>&lt;script&gt;alert('XSS!');&lt;/script&gt;</code></p>
+  
+  <div class="card my-4">
+    <div class="card-body">
+      <h5 class="card-title">Guestbook</h5>
+      <form method="post">
+        <div class="mb-3">
+          <label for="comment" class="form-label">Your Comment:</label>
+          <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <h4 class="mt-4">Comments:</h4>
+  {% if comments %}
+    <ul class="list-group">
+      {% for comment in comments %}
+        <li class="list-group-item">{{ comment }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No comments yet. Be the first!</p>
+  {% endif %}
+{% endblock %}

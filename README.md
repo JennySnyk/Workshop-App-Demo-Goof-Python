@@ -50,6 +50,9 @@ The application will be available at `http://localhost:5001`.
 - **SQL Injection**: `vulnerabilities/sqli`
 - **Hardcoded Secret**: `vulnerabilities/hardcoded_secret`
 - **Vulnerable Dependency**: `PyYAML==5.1` (High-Severity Deserialization Vulnerability)
+- **Path Traversal**: `vulnerabilities/path_traversal`
+- **Cross-Site Scripting (XSS)**: `vulnerabilities/xss`
+- **Insecure Deserialization**: `vulnerabilities/insecure_deserialization`
 
 ## Disclaimer
 
